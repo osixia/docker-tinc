@@ -1,2 +1,2 @@
 #!/bin/bash -e
-exec /usr/sbin/tinc start -D
+exec tinc start -D
