@@ -5,6 +5,7 @@ FIRST_START_DONE="/etc/docker-tinc-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
 
+  TINC_HOSTNAME=$(echo $TINC_HOSTNAME | sed -e 's/[^a-zA-Z0-9\-]/_/g')
   /usr/sbin/tinc init $TINC_HOSTNAME
 
   # add root user on specified networks
