@@ -8,16 +8,15 @@ FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-tinc-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
 
-  mkdir -p ${CONTAINER_STATE_DIR}/tinc/data
+  mkdir -p ${CONTAINER_SERVICE_DIR}/tinc/data
 
   TINC_HOSTNAME=$(echo $HOSTNAME | sed -e 's/[^a-zA-Z0-9\-]/_/g')
-  tinc -c ${CONTAINER_STATE_DIR}/tinc/data init $TINC_HOSTNAME
+  tinc -c ${CONTAINER_SERVICE_DIR}/tinc/data init $TINC_HOSTNAME
 
-  # add root user on specified networks
-  for command in $(complex-bash-env iterate "${TINC_RUN_BEFORE_START_COMMANDS}")
+  for command in $(complex-bash-env iterate TINC_RUN_BEFORE_START_COMMANDS)
   do
-    log-helper info "Run tinc command: ${command}"
-    tinc -c ${CONTAINER_STATE_DIR}/tinc/data ${command}
+    log-helper info "Run tinc command: ${!command}"
+    tinc -c ${CONTAINER_SERVICE_DIR}/tinc/data ${!command}
   done
 
 fi
