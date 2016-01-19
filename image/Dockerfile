@@ -1,9 +1,5 @@
-FROM osixia/experimental-light-baseimage:0.1.0
+FROM osixia/experimental-light-baseimage:0.1.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
-
-# Use baseimage's init system.
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/run
-CMD ["/container/tool/run"]
 
 # Install OpenLDAP, ldap-utils and ssl-helper from baseimage and remove default ldap db
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service-available
@@ -21,7 +17,7 @@ RUN /container/tool/install-service \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add default env variables
-ADD env.yaml /container/environment/env.yaml
+ADD environment /container/environment/99-default
 
 # Set tinc config directory in a data volume
 VOLUME ["/etc/tinc"]
