@@ -19,7 +19,4 @@ RUN /container/tool/install-service \
 # Add default env variables
 ADD environment /container/environment/99-default
 
-# Set tinc config directory in a data volume
-VOLUME ["/etc/tinc"]
-
 EXPOSE 655/tcp 655/udp
