@@ -1,4 +1,4 @@
-FROM osixia/experimental-light-baseimage:0.1.3
+FROM osixia/experimental-light-baseimage:0.1.4
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Install OpenLDAP, ldap-utils and ssl-helper from baseimage and remove default ldap db
