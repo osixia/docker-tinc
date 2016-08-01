@@ -3,3 +3,7 @@ TINC_RUN_BEFORE_START_COMMANDS:
   - add Subnet = 10.244.1.0/24
   - add Mode = switch
   - add DeviceType = tap
+
+# tinc -d debug level
+# more info: https://www.tinc-vpn.org/documentation/tincd.8
+TINC_LOG_LEVEL: 3
