@@ -5,4 +5,4 @@ TINC_RUN_BEFORE_START_COMMANDS:
   - add DeviceType = tap
 
 # more info: https://www.tinc-vpn.org/documentation/tincd.8
-TINC_CMD_ARGS: --debug=0
+TINC_CMD_ARGS: --debug=3
