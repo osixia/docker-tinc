@@ -4,6 +4,5 @@ TINC_RUN_BEFORE_START_COMMANDS:
   - add Mode = switch
   - add DeviceType = tap
 
-# tinc -d debug level
 # more info: https://www.tinc-vpn.org/documentation/tincd.8
-TINC_LOG_LEVEL: 3
+TINC_CMD_ARGS: --debug=0

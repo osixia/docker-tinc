@@ -2,7 +2,7 @@
 
 ## 0.1.3
   - Upgrade baseimage: experimental-light-baseimage:0.1.4
-  - Add TINC_LOG_LEVEL environment variable
+  - Add TINC_CMD_ARGS environment variable
 
 ## 0.1.2 (unreleased)
 
