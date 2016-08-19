@@ -1,0 +1,5 @@
+TINC_RUN_BEFORE_START_COMMANDS:
+  - add Address = 1.1.1.1
+  - add Subnet = 10.244.1.0/24
+  - add Mode = switch
+  - add DeviceType = tap
