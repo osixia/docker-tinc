@@ -4,4 +4,4 @@
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
 log-helper level eq trace && set -x
 
-exec tinc -c ${CONTAINER_SERVICE_DIR}/tinc/data start --no-detach $TINC_CMD_ARGS
+exec tincd --config ${CONTAINER_SERVICE_DIR}/tinc/data --no-detach $TINC_CMD_ARGS
