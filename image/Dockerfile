@@ -12,12 +12,17 @@ RUN apt-get -y update \
 			 ca-certificates \
 			 curl \
        gcc \
+       libssl1.0.0 \
        libssl-dev \
+       liblzo2-2 \
        liblzo2-dev \
+       libncurses5 \
 			 libncurses5-dev \
+       libreadline6 \
 			 libreadline-dev \
        make \
        pkg-config \
+       zlib1g \
 			 zlib1g-dev \
     && curl -o tinc.tar.gz -SL https://www.tinc-vpn.org/packages/tinc-${TINC_VERSION}.tar.gz \
     && mkdir -p /container/tinc-sources \
@@ -26,6 +31,7 @@ RUN apt-get -y update \
     && ./configure \
     && make && make install \
     && cd - \
+    && mkdir -p /usr/local/var/run/ \
     && apt-get remove -y --purge --auto-remove ca-certificates curl gcc  \
 		   libssl-dev liblzo2-dev libncurses5-dev libreadline-dev make pkg-config zlib1g-dev \
     && rm -f tinc.tar.gz \
