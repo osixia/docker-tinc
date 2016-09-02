@@ -1,13 +1,43 @@
-FROM osixia/experimental-light-baseimage:0.1.3
+# Use osixia/light-baseimage
+# sources: https://github.com/osixia/docker-light-baseimage
+FROM osixia/light-baseimage:0.2.5
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-# Install OpenLDAP, ldap-utils and ssl-helper from baseimage and remove default ldap db
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service-available
-RUN echo "deb http://http.debian.net/debian experimental main" >> /etc/apt/sources.list && apt-get -y update \
-	  && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-	     -t experimental tinc  \
-		&& apt-get clean \
-		&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Tinc version
+ENV TINC_VERSION 1.1pre14
+
+# Download, build and install Tinc
+RUN apt-get -y update \
+    && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+			 ca-certificates \
+			 curl \
+       gcc \
+       libssl1.0.0 \
+       libssl-dev \
+       liblzo2-2 \
+       liblzo2-dev \
+       libncurses5 \
+			 libncurses5-dev \
+       libreadline6 \
+			 libreadline-dev \
+       make \
+       pkg-config \
+       zlib1g \
+			 zlib1g-dev \
+    && curl -o tinc.tar.gz -SL https://www.tinc-vpn.org/packages/tinc-${TINC_VERSION}.tar.gz \
+    && mkdir -p /container/tinc-sources \
+    && tar -xzf tinc.tar.gz --strip 1 -C /container/tinc-sources \
+    && cd /container/tinc-sources \
+    && ./configure \
+    && make && make install \
+    && cd - \
+    && mkdir -p /usr/local/var/run/ \
+    && apt-get remove -y --purge --auto-remove ca-certificates curl gcc  \
+		   libssl-dev liblzo2-dev libncurses5-dev libreadline-dev make pkg-config zlib1g-dev \
+    && rm -f tinc.tar.gz \
+    && rm -rf /container/tinc-sources \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service
 ADD service /container/service

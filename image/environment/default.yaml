@@ -1,5 +1,2 @@
-TINC_RUN_BEFORE_START_COMMANDS:
-  - add Address = 1.1.1.1
-  - add Subnet = 10.244.1.0/24
-  - add Mode = switch
-  - add DeviceType = tap
+# more info: https://www.tinc-vpn.org/documentation/tincd.8
+TINC_CMD_ARGS: --debug=3
