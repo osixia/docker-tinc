@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6
+  - Upgrade baseimage: light-baseimage:0.2.6
+  - Add TINC_CMD_ARGS environment variable
+  - Compile tinc from sources
+
 ## 0.1.3
   - Upgrade baseimage: light-baseimage:0.2.5
   - Add TINC_CMD_ARGS environment variable
