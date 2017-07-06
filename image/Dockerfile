@@ -1,10 +1,10 @@
 # Use osixia/light-baseimage
 # sources: https://github.com/osixia/docker-light-baseimage
-FROM osixia/light-baseimage:0.2.6
+FROM osixia/light-baseimage:1.1.0
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Tinc version
-ENV TINC_VERSION 1.1pre14
+ARG TINC_VERSION=1.1pre14
 
 # Download, build and install Tinc
 RUN apt-get -y update \
@@ -12,13 +12,13 @@ RUN apt-get -y update \
 			 ca-certificates \
 			 curl \
        gcc \
-       libssl1.0.0 \
+       libssl1.1 \
        libssl-dev \
        liblzo2-2 \
        liblzo2-dev \
        libncurses5 \
 			 libncurses5-dev \
-       libreadline6 \
+       libreadline7 \
 			 libreadline-dev \
        make \
        pkg-config \
