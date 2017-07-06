@@ -12,8 +12,8 @@ RUN apt-get -y update \
 			 ca-certificates \
 			 curl \
        gcc \
-       libssl1.1 \
-       libssl-dev \
+       # libssl1.0.0 \ v1.0.0 not available in debian stretch
+       # libssl-dev \
        liblzo2-2 \
        liblzo2-dev \
        libncurses5 \
@@ -24,6 +24,10 @@ RUN apt-get -y update \
        pkg-config \
        zlib1g \
 			 zlib1g-dev \
+    && curl -o libssl.deb -SL http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb7u2_amd64.deb \
+    && curl -o libssl-dev.deb -SL http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl-dev_1.0.1t-1+deb7u2_amd64.deb \
+    && dpkg -i libssl.deb && rm libssl.deb \
+    && dpkg -i libssl-dev.deb && rm libssl-dev.deb \
     && curl -o tinc.tar.gz -SL https://www.tinc-vpn.org/packages/tinc-${TINC_VERSION}.tar.gz \
     && mkdir -p /container/tinc-sources \
     && tar -xzf tinc.tar.gz --strip 1 -C /container/tinc-sources \
