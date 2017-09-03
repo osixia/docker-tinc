@@ -4,7 +4,7 @@ FROM osixia/light-baseimage:1.1.0
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Tinc version
-ARG TINC_VERSION=1.1pre14
+ARG TINC_VERSION=1.1pre15
 
 # Download, build and install Tinc
 RUN apt-get -y update \
@@ -12,8 +12,8 @@ RUN apt-get -y update \
 			 ca-certificates \
 			 curl \
        gcc \
-       libssl1.0.2 \
-       libssl1.0-dev \
+       libssl1.1 \
+       libssl-dev \
        liblzo2-2 \
        liblzo2-dev \
        libncurses5 \
@@ -33,7 +33,7 @@ RUN apt-get -y update \
     && cd - \
     && mkdir -p /usr/local/var/run/ \
     && apt-get remove -y --purge --auto-remove ca-certificates curl gcc  \
-		  libssl1.0-dev liblzo2-dev libncurses5-dev libreadline-dev make pkg-config zlib1g-dev \
+		  libssl-dev liblzo2-dev libncurses5-dev libreadline-dev make pkg-config zlib1g-dev \
     && rm -f tinc.tar.gz \
     && rm -rf /container/tinc-sources \
     && apt-get clean \
