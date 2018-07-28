@@ -1,5 +1,5 @@
 NAME = osixia/tinc
-VERSION = 0.2.1
+VERSION = 0.2.2
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 
